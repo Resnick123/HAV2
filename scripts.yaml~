@@ -1,0 +1,124 @@
+#todo volume control
+
+
+
+
+
+#-only start tv on HDMI 1  by default
+# voice level on 20%
+start_tv:
+  sequence:
+  - service: media_player.turn_on
+    data:
+      entity_id: media_player.sonytv
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.sonytv
+      source: HDMI 1
+  - service: media_player.volume_set
+   # entity_id: media_player.sonytv
+    data_template:
+      entity_id: media_player.sonytv
+      volume_level: 0.5 
+
+#stop tv (set volume level to default, source to default)      
+stop_tv:
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.sonytv
+      source: HDMI 1
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.sonytv
+      volume_level: 0.2  
+  - service: media_player.turn_off
+    data:
+      entity_id: media_player.sonytv 
+  
+
+# start tv -> go to netflix
+netflix_tv:
+  sequence:
+  - service: script.start_tv
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.sonytv
+      media_content_type: video
+      media_content_id: Netflix
+  
+     
+        
+
+
+yamaha_on_tv:
+  sequence:
+  - service: media_player.turn_on
+    data:
+      entity_id: media_player.ysp1600_ce8633_main
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.ysp1600_ce8633_main
+      source: tv
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.ysp1600_ce8633_main
+      volume_level: 0.55
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.sonytv
+      volume_level: '{{0.0}}'
+
+
+
+#yamaha on spotify
+#EOF
+yamaha_off:
+  sequence:
+  - service: media_player.turn_off
+    data:
+      entity_id: media_player.ysp1600_ce8633_main
+   
+       
+       
+netflix_combo:
+   sequence:
+   - service: script.netflix_tv
+   - service: script.yamaha_on_tv
+
+
+vacuum_livingroom_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[21000,25450,26900,29750,1]]
+
+
+vacuum_kitchen_clean:
+  sequence:
+  - service: vacuum.send_command                   
+    data:
+      entity_id: vacuum.malami  
+      command: app_zoned_clean  
+      params: [[17850,27480,20700,32260,1]]
+
+
+
+vacuum_corridor1_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[21000,22000,22000,25450,1]]
+
+
+vacuum_corridor2_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[21000,20500,23500,22000,1]]

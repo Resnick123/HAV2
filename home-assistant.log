@@ -1,0 +1,42 @@
+2018-07-30 18:32:01 WARNING (SyncWorker_16) [netdisco.ssdp] Found malformed XML at http://192.168.1.10:9080: status=ok
+2018-07-30 18:32:01 WARNING (SyncWorker_16) [netdisco.ssdp] Error fetching description at http://192.168.1.28:8080/BasicDeviceDescription.xml
+2018-07-30 18:32:05 ERROR (SyncWorker_5) [rxv] Invalid XML returned for request http://192.168.1.20:80/YamahaRemoteControl/desc.xml: b''
+Traceback (most recent call last):
+  File "/home/resnick/homeassistant/lib/python3.6/site-packages/rxv/rxv.py", line 101, in _discover_features
+    self._desc_xml = ET.fromstring(desc_xml)
+  File "/usr/lib/python3.6/xml/etree/ElementTree.py", line 1315, in XML
+    return parser.close()
+  File "<string>", line None
+xml.etree.ElementTree.ParseError: no element found: line 1, column 0
+2018-07-30 18:32:05 ERROR (MainThread) [homeassistant.components.media_player] Error while setting up platform yamaha
+Traceback (most recent call last):
+  File "/home/resnick/homeassistant/lib/python3.6/site-packages/homeassistant/helpers/entity_platform.py", line 129, in _async_setup_platform
+    SLOW_SETUP_MAX_WAIT, loop=hass.loop)
+  File "/usr/lib/python3.6/asyncio/tasks.py", line 358, in wait_for
+    return fut.result()
+  File "/usr/lib/python3.6/concurrent/futures/thread.py", line 56, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/resnick/homeassistant/lib/python3.6/site-packages/homeassistant/components/media_player/yamaha.py", line 84, in setup_platform
+    unit_desc_url=desc_url).zone_controllers()
+  File "/home/resnick/homeassistant/lib/python3.6/site-packages/rxv/rxv.py", line 95, in __init__
+    self._discover_features()
+  File "/home/resnick/homeassistant/lib/python3.6/site-packages/rxv/rxv.py", line 101, in _discover_features
+    self._desc_xml = ET.fromstring(desc_xml)
+  File "/usr/lib/python3.6/xml/etree/ElementTree.py", line 1315, in XML
+    return parser.close()
+  File "<string>", line None
+xml.etree.ElementTree.ParseError: no element found: line 1, column 0
+2018-07-30 20:03:43 ERROR (SyncWorker_10) [homeassistant.util.yaml] YAML file /home/resnick/.homeassistant/scripts.yaml contains duplicate key "vacuum_corridor1_clean". Check lines 108 and 117.
+2018-07-30 20:03:45 ERROR (SyncWorker_14) [homeassistant.util.yaml] YAML file /home/resnick/.homeassistant/scripts.yaml contains duplicate key "vacuum_corridor1_clean". Check lines 108 and 117.
+2018-07-31 00:00:32 ERROR (Thread-3) [pychromecast.socket_client] Error reading from socket.
+2018-07-31 00:00:32 WARNING (Thread-3) [pychromecast.socket_client] Error communicating with socket, resetting connection
+2018-07-31 00:00:32 ERROR (Thread-3) [pychromecast.socket_client] Failed to connect, retrying in 5.0s
+2018-07-31 03:45:19 ERROR (SyncWorker_13) [miio.device] Unable to discover a device at address 192.168.1.25
+2018-07-31 03:45:19 WARNING (SyncWorker_13) [homeassistant.components.vacuum.xiaomi_miio] Got exception while fetching the state: Unable to discover the device 192.168.1.25
+2018-07-31 03:45:35 ERROR (SyncWorker_1) [miio.device] Unable to discover a device at address 192.168.1.25
+2018-07-31 03:45:35 WARNING (SyncWorker_1) [homeassistant.components.vacuum.xiaomi_miio] Got exception while fetching the state: Unable to discover the device 192.168.1.25
+2018-07-31 07:38:59 ERROR (Thread-3) [pychromecast.socket_client] Error reading from socket.
+2018-07-31 07:38:59 WARNING (Thread-3) [pychromecast.socket_client] Error communicating with socket, resetting connection
+2018-07-31 07:38:59 ERROR (Thread-3) [pychromecast.socket_client] Failed to connect, retrying in 5.0s
+2018-07-31 07:40:58 WARNING (Thread-3) [pychromecast.socket_client] Heartbeat timeout, resetting connection
+2018-07-31 07:41:28 ERROR (Thread-3) [pychromecast.socket_client] Failed to connect, retrying in 5.0s

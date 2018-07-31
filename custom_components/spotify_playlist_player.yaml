@@ -1,0 +1,88 @@
+group:
+  music_spotify:
+    name: Music 
+    entities:
+      - input_select.spotify_playlist
+      - input_select.spotify_source
+      - script.spotify_music
+      - input_slider.spotify_volume
+
+#Use this to find aliases for your spotify media_player component (in your configuration.yaml file).  Look at home-assistant.log to find the aliases of your components.  Enter these aliases into that component in configuration.yaml.
+# https://home-assistant.io/components/media_player.spotify/
+
+      
+homeassistant:
+  customize:
+    script.spotify_music:
+      friendly_name: 'Play'
+      icon: mdi:play
+
+input_number:
+  spotify_volume:
+    name: Volume
+    icon: mdi:volume-high
+    min: 0
+    max: 1
+    step: 0.05
+
+input_select:
+  spotify_playlist:
+    name: 'Playlist:'
+    options:
+      - Easy 80s
+      - Easy Classical
+      - Daily Mix 1
+      - Daily Mix 2
+      - Daily Mix 3
+      - Daily Mix 4
+    initial: Easy 80s
+    icon: mdi:spotify
+  spotify_source:
+    name: 'Source:'
+    options:
+      - iphone
+      - MacBook_Pro_(Krzysztof)
+      - ysp1600_ce8633_main
+    initial: ysp1600_ce8633_main
+    icon: mdi:speaker-wireless
+
+script:
+    spotify_music:
+        alias: Play selected spotify playlist
+        sequence:
+          - service: media_player.volume_set
+            data:
+              entity_id: media_player.spotify
+              volume_level: '0.40'
+          -  service: media_player.select_source
+             data_template: 
+               entity_id: media_player.spotify
+               source: >
+                {% if is_state("input_select.spotify_source", "iphone") %} iphone
+                {% elif is_state("input_select.spotify_source", "ipad") %} MacBook_Pro_(Krzysztof)
+                {% elif is_state("input_select.spotify_source", "ysp1600_ce8633_main") %} ysp1600_ce8633_main
+                {% endif %}
+          -  service: media_player.play_media
+             data_template:
+               entity_id: media_player.spotify
+               media_content_type: playlist
+               media_content_id: >
+                {% if is_state("input_select.spotify_playlist", "Easy 80s") %} spotify:user:spotify:playlist:37i9dQZF1DX6l1fwN15uV5
+                {% elif is_state("input_select.spotify_playlist", "Easy Classical") %} spotify:user:spotify:playlist:37i9dQZF1DX0Aaer4Jzfgm
+                {% elif is_state("input_select.spotify_playlist", "Daily Mix 1") %} spotify:user:11125382711:playlist:3z7b5aI9fHH5yNZIPpqUmo
+                {% elif is_state("input_select.spotify_playlist", "Daily Mix 2") %} spotify:user:11125382711:playlist:2SKu4mQNQ87ulQSnpFIBUH 
+                {% elif is_state("input_select.spotify_playlist", "Daily Mix 3") %} spotify:user:11125382711:playlist:10bsuZ8JlqaDgmcN7OZ7mT
+                {% elif is_state("input_select.spotify_playlist", "Daily Mix 4") %} spotify:user:11125382711:playlist:6Idn973dIALhCtDM2a8H3I
+                {% endif %}
+
+automation:
+  - alias: 'Set Spotify Volume'
+    trigger:
+      - platform: state
+        entity_id: input_number.spotify_volume
+    action:
+      - service: media_player.volume_set
+        data_template:
+          entity_id: media_player.spotify
+          volume_level: '{{  states.input_number.spotify_volume.state  }}'
+

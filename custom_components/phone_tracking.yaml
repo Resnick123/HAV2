@@ -1,0 +1,34 @@
+automation:
+#alias: InWork
+trigger: 
+  platform: zone
+  entity_id: device_tracker.iphonekrzysztof
+  zone: zone.Work
+    # Event is either enter or leave
+  event: enter
+  action:
+    service: notify.iphone_pushbullet     
+    data:
+      title: "In the war"       
+      message: "blablabla"
+
+
+
+#- alias: OutWork
+#  trigger:
+#    platform: zone
+#    entity_id: device_tracker.iphonekrzysztof
+#    zone: zone.work
+    # Event is either enter or leave
+#    event: leave
+#    action:
+#      service: notify.iphone_pushbullet
+#      data:
+#        title: "Goin hoe"
+#        message: "I'll be surprised if this works!"
+
+#notify.ios_chris_iphone
+#dosprawdzenia iphone_krzysztof
+
+
+

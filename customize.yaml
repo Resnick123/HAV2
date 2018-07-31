@@ -1,0 +1,5 @@
+zone.gschool:
+  icon: mdi:school
+zone.home:
+  icon: mdi:Home
+group.music_spotify: {}

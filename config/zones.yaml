@@ -1,0 +1,15 @@
+- name: Home
+  latitude: 52.170600
+  longitude: 21.106644
+  radius: 100
+  icon: mdi:home
+- name: Work
+  latitude: 52.187996
+  longitude: 20.946639
+  radius: 100
+  icon: mdi:worker
+- name: GSchool
+  latitude: 52.156769
+  longitude: 21.092049
+  radius: 100
+  icon: mdi:school

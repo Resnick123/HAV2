@@ -1,0 +1,3 @@
+domain: !secret no_ip_domain
+username: !secret noipusr
+password: !secret noippass

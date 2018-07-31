@@ -1,0 +1,116 @@
+## https://home-assistant.io/getting-started/
+## https://home-assistant.io/cookbook/
+## http://www.yamllint.com/
+
+
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+   #http://www.latlong.net/
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  elevation: 0
+  unit_system: metric
+  time_zone: Europe/Warsaw
+#  customize: !include config/customize.yaml
+#  packages:
+#    pack_1: !include custom_components/spotify_playlist_player.yaml
+#    pack_2: !include custom_components/kodi.yaml
+#    pack_3: !include custom_components/phone_tracking.yaml 
+
+
+
+
+# Show links to resources in log and frontend
+introduction: 
+# Enables the frontend
+frontend:
+# Enables configuration UI
+config:
+no_ip:  !include config/no_ip.yaml
+http: !include config/http.yaml
+# Checks for available updates
+updater:
+# Discover some devices automatically
+discovery:
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+# Enables support for tracking state changes over time
+history:
+# Enables a map showing the location of tracked devices
+map:
+# Track the sun
+sun:
+# Weather prediction
+sensor: !include config/sensor.yaml
+# Text to speech
+tts: !include config/tts.yaml
+cloud:
+group: !include groups.yaml
+#--- nic tu nie ma ----automation: !include automations.yaml
+script: !include scripts.yaml
+google_assistant: !include config/google_assistant.yaml
+vacuum: !include config/xiaomi.yaml
+ifttt: !include config/ifttt.yaml
+media_player: !include config/media_player.yaml
+logger: !include config/logger.yaml
+ios:
+zone: !include config/zones.yaml
+
+
+
+#recorder: !include config/recorder.yaml
+#logbook: !include config/logbook.yaml
+#history: !include config/history.yaml
+
+
+#device_tracker:
+#  - platform: icloud
+#    username: !secret icloud_usr_1
+#    password: !secret icloud_pass_1
+#    account_name: resnick
+#    filter_devices: 'phone'
+#  - platform: icloud
+#    username: !secret icloud_usr_2
+#    password: !secret icloud_pass_2
+#    account_name: hania
+    #filter_devices: 'phone'
+
+#automation: 
+#  - alias: InWork
+#    trigger:
+#      platform: zone
+#      entity_id: device_tracker.iphonekrzysztof
+#      zone: zone.Work
+#    # Event is either enter or leave
+#      event: enter
+#    action:
+#      service: notify.iphone_krzysztof
+#      service: notify.ios_iphone_krzysztof
+#      service: notify.ios_iphonekrzysztof
+#      service: notify.iphonekrzysztof
+  # or ios_iphone_krzysztof ?
+#notify.iphone_pushbullet
+#      data:
+#        title: "In the war"
+#        message: "blablabla"
+ 
+#  - alias: OutWork
+#    trigger:
+#      platform: zone 
+#      entity_id: device_tracker.iphonekrzysztof
+#      zone: zone.work
+    # Event is either enter or leave
+#      event: leave
+#    action:
+#      service: notify.iphone_krzysztof 
+#      service: notify.ios_iphone_krzysztof
+#      service: notify.ios_iphonekrzysztof
+#      service: notify.iphonekrzysztof
+#notify.iphone_pushbullet
+#      data:
+#        title: "Goin hoe"
+#        message: "I'll be surprised if this works!"
+
+
+

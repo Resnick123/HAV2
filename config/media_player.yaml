@@ -1,0 +1,37 @@
+#- platform: braviatv
+#  host: !secret tv_ip
+#  name: sonytv
+
+
+- platform: yamaha_musiccast
+  host: !secret yamaha_ip
+
+- platform: braviatv_psk
+  name: sonytv
+  host: !secret tv_ip
+  psk: sony
+  mac: !secret sony_mac
+  android: true
+  sourcefilter:
+    -  ' HD'
+    -  'HDMI'
+
+- platform: spotify
+  client_id: !secret s_client_id
+  client_secret: !secret s_client_secret
+
+
+
+
+
+
+
+
+
+
+#----
+
+
+
+#- platform: kodi
+#  host: !secret tv_ip|volume_level

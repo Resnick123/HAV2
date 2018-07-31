@@ -1,0 +1,8 @@
+# Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: !secret b_url
+  ssl_certificate: !secret ssl_cert
+  ssl_key: !secret ssl_k
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
