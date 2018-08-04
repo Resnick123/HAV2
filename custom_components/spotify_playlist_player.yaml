@@ -1,16 +1,14 @@
 group:
   music_spotify:
-    name: Music 
+    name: Spotify Player
     entities:
       - input_select.spotify_playlist
       - input_select.spotify_source
       - script.spotify_music
-      - input_slider.spotify_volume
+      - input_number.spotify_volume
+      - media_player.spotify
 
-#Use this to find aliases for your spotify media_player component (in your configuration.yaml file).  Look at home-assistant.log to find the aliases of your components.  Enter these aliases into that component in configuration.yaml.
-# https://home-assistant.io/components/media_player.spotify/
-
-      
+#------------------------------------------------------------------      
 homeassistant:
   customize:
     script.spotify_music:
@@ -77,6 +75,7 @@ script:
 
 automation:
   - alias: 'Set Spotify Volume'
+    hide_entity: True
     trigger:
       - platform: state
         entity_id: input_number.spotify_volume

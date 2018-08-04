@@ -1,2 +1,7 @@
-
+#Vacek:
+#view: yes
+#icon: mdi:home
+#entities:
+#  - script.vacuum_livingroom_clean
+#  - script.vacuum_kitchen_clean
 

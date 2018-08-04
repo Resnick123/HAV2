@@ -13,8 +13,9 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Warsaw
 #  customize: !include config/customize.yaml
-#  packages:
-#    pack_1: !include custom_components/spotify_playlist_player.yaml
+  packages:
+     pack_1: !include custom_components/spotify_playlist_player.yaml
+     pack_2: !include custom_components/vacuum_cleaner.yaml
 #    pack_2: !include custom_components/kodi.yaml
 #    pack_3: !include custom_components/phone_tracking.yaml 
 
@@ -114,3 +115,11 @@ zone: !include config/zones.yaml
 
 
 
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://0.0.0.0:3218
+  router:
+    title: 'Router'
+    url: 'http://192.168.1.1'

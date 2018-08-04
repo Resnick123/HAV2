@@ -1,0 +1,127 @@
+group:
+  robot_vacuum:
+    name: Xiaomi Vacuum
+    entities:
+      - binary_sensor.vacuum_room
+      - vacuum.malami
+      - input_select.vacuum_room
+      - input_boolean.disable_daily_vacuum
+      - input_boolean.daily_vacuum_first_run
+      - input_boolean.disable_dustbin_notification
+
+
+
+homeassistant:
+  customize:
+    input_boolean.disable_daily_vacuum:
+      icon: mdi:stop-circle-outline
+    input_boolean.disable_dustbin_notification:
+      icon: mdi:delete-empty
+#    binary_sensor.vacuum_room:
+#      custom_ui_state_card: state-card-floorplan
+#      config: !include ../floorplan_vacuum.yaml
+
+binary_sensor:
+  - platform: mqtt
+    state_topic: "dummy/floorplan/sensor"
+    name: "Vacuum Room"
+
+
+
+
+input_boolean:
+   daily_vacuum_first_run:
+     name: "Daily_Vacuum_First_Run"
+     initial: off
+   disable_daily_vacuum:
+     name: "Disable_Daily_Vacuum_Automation"
+     initial: on
+   disable_dustbin_notification:
+     name: "Disable_Dustbin_Notification"
+     initial: off
+
+
+input_select:
+  vacuum_room:
+    name: "Choose a room to clean"
+    options:
+      - Select Input
+      - All
+      - Living Room
+      - Kitchen
+      - Corridor
+      - Bedroom
+      - Bedroom_Z
+      - Bedroom_G
+      - Bathroom
+      - Main Bathroom     
+    initial: Select Input
+
+
+#status check
+sensor:
+  - platform: template
+    sensors:
+      xiaomi_vacuum_cleaner_status:
+       friendly_name: "Xiaomi Vacuum Cleaner Status"
+       value_template: "{{ states.vacuum.malami.attributes.status }}"
+
+
+
+#skopiować skrypty
+#vacuum_livingroom_clean
+#vacuum_kitchen_clean
+#vacuum_corridor1_clean
+#vacuum_corridor2_clean
+
+#vacuum_bedroom_clean_tbt
+
+#vacuum_clean_all
+
+
+
+#----------------
+#clean_def
+
+#- alias: Start Cleaning Room
+#    hide_entity: True
+#    trigger:
+#    - platform: state
+#      entity_id: input_select.vacuum_room
+#      from: 'Select Input'
+#    action:
+#    - service: script.turn_on
+#      data_template:
+#        entity_id: >
+#          {% if is_state("input_select.vacuum_room", "All ") %}
+#            script.vacuum_clean_all
+#          {% elif is_state("input_select.vacuum_room", "Living Room") %}
+#            script.vacuum_livingroom_clean
+#          {% elif is_state("input_select.vacuum_room", "Kitchen") %}
+#            script.vacuum_kitchen_clean
+#full corridor script neeed
+         # {% elif is_state("input_select.vacuum_room", "Cooridor") %}
+         #   script.vacuum_entryway
+#          {% elif is_state("input_select.vacuum_room", "Bedroom") %}
+#            script.vacuum_bedroom_clean_tbt
+#
+#          {% elif is_state("input_select.vacuum_room", "Dining Room") %}
+#            script.vacuum_dining_room
+#          {% elif is_state("input_select.vacuum_room", "Ensuite Bathroom") %}
+#            script.vacuum_ensuite_bathroom          
+#          {% else %}
+#          {% endif %}
+#    - service: input_select.select_option
+#      entity_id: input_select.vacuum_room
+#      data_template:
+#        option: "Select Input"
+
+
+
+
+
+
+
+
+
+#------------------

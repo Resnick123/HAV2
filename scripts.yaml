@@ -1,5 +1,4 @@
 #TODOS
-# media player volume control
 
 
 
@@ -20,7 +19,7 @@ start_tv:
    # entity_id: media_player.sonytv
     data_template:
       entity_id: media_player.sonytv
-      volume_level: 0.5 
+      volume_level: 0.25 
 
 #stop tv (set volume level to default, source to default)      
 stop_tv:
@@ -32,7 +31,7 @@ stop_tv:
   - service: media_player.volume_set
     data_template:
       entity_id: media_player.sonytv
-      volume_level: 0.2  
+      volume_level: 0.25 
   - service: media_player.turn_off
     data:
       entity_id: media_player.sonytv 
@@ -68,7 +67,7 @@ yamaha_on_tv:
   - service: media_player.volume_set
     data_template:
       entity_id: media_player.sonytv
-      volume_level: '{{0.0}}'
+      volume_level: 0.01
 
 
 
@@ -87,6 +86,7 @@ netflix_combo:
    - service: script.netflix_tv
    - service: script.yamaha_on_tv
 
+#-------vacuum scripts------
 
 vacuum_livingroom_clean:
   sequence:
@@ -95,8 +95,7 @@ vacuum_livingroom_clean:
       entity_id: vacuum.malami
       command: app_zoned_clean
       params: [[21000,25450,26900,29750,1]]
-
-
+ 
 vacuum_kitchen_clean:
   sequence:
   - service: vacuum.send_command                   
@@ -123,34 +122,84 @@ vacuum_corridor2_clean:
       entity_id: vacuum.malami
       command: app_zoned_clean
       params: [[21000,20500,23500,22000,1]]
-
-
-#TOBE TESTED
-vacuum_bedroom_clean_tbt:
+vacuum_corridor2_clean:
   sequence:
   - service: vacuum.send_command
     data:
       entity_id: vacuum.malami
       command: app_zoned_clean
-      params: [[21995,22200,28500,25400,1]]
+      params: [[18000,22700,20500,24900,1]]
+
+#vacuum corridor 3
+
+vacuum_bedroom_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[22500,23000,27700,25450,1]]
+
+vacuum_bedroom2_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[18700,19500,20600,22500,1]]
+
+vacuum_bedroom3_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[23700,19000,26600,21500,1]]
 
 
 
-
-
-
-
-
-
-
+vacuum_bedroom_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[22500,23000,27700,25450,1]]
+vacuum_bathroom_clean:
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.malami
+      command: app_zoned_clean
+      params: [[21000,18500,22700,20800,1]]
 
 
 
 vacuum_clean_all:
  sequence:
- sequence:
   - service: vacuum.send_command
     data:
       entity_id: vacuum.malami
       command: app_zoned_clean
-      params: [[21000,25450,26900,29750,1],[17850,27480,20700,32260,1],[21000,22000,22000,25450,1],[21000,20500,23500,22000,1]]
+      params: [[21000,25450,26900,29750,1],
+               [17850,27480,20700,32260,1],
+               [21000,22000,22000,25450,1],
+               [21000,20500,23500,22000,1],
+               [22500,23000,27700,25450,1],
+               [18700,19500,20600,22500,1],
+               [21000,18500,22700,20800,1],
+               [23700,19000,26600,21500,1],
+               [18000,22700,20500,24900,1]]
+
+vacuum_stop:
+  sequence:
+  - service: vacuum.stop
+    data:
+      entity_id: vacuum.malami
+      
+vacuum_dock:
+  sequence:
+  - service: vacuum.return_to_base
+    data: 
+      entityid: vacuum.malami
+
